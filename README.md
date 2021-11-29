@@ -50,11 +50,11 @@ Create Database:
 
 In the SQL Client you will see the created databases:
 
-![empty_db](images\empty_db.png)
+![alt text](images\empty_db.png)
 
 In the Airflow Webserver you see:
 
-![airflow_1](images\airflow_1.png)
+![alt text](images\airflow_1.png)
 
 Enable and trig *"file_stage_etl"* and wait to be done.
 
