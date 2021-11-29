@@ -1,0 +1,13 @@
+files/stage/olist_customers_dataset.csv
+files/stage/olist_geolocation_dataset.csv
+files/stage/olist_order_items_dataset.csv
+files/stage/product_category_name_translation.csv
+files/stage/olist_sellers_dataset.csv
+files/stage/olist_products_dataset.csv
+files/stage/olist_orders_dataset.csv
+files/stage/olist_order_reviews_dataset.csv
+files/stage/olist_order_payments_dataset.csv
+
+others/
+airflow/dags/__pycache__/
+jupyters/.ipynb_checkpoints/
