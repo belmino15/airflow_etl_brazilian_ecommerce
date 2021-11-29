@@ -50,11 +50,11 @@ Create Database:
 
 In the SQL Client you will see the created databases:
 
-![alt text](images\empty_db.png)
+![empty_db](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/empty_db.png)
 
 In the Airflow Webserver you see:
 
-![alt text](images\airflow_1.png)
+![airflow_1](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_1.png)
 
 Enable and trig *"file_stage_etl"* and wait to be done.
 
