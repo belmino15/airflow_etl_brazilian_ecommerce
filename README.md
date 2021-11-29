@@ -58,15 +58,15 @@ In the Airflow Webserver you see:
 
 Enable and trig *"file_stage_etl"* and wait to be done.
 
-![airflow_2](images\airflow_2.png)
+![airflow_2](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_2.png)
 
 Then, enable and trig *"stage_dw_etl"* and wait to be done.
 
-![airflow_3](images\airflow_3.png)
+![airflow_3](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_3.png)
 
 The database will then be like this:
 
-![complete_db](images\complete_db.png)
+![complete_db](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/complete_db.png)
 
 ## Results:
 
@@ -76,7 +76,7 @@ The [link](https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_selle
 
 After the reformulation, the data will be organized as follows.
 
-![dw_compras](images\dw_compras.png)
+![dw_compras](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/dw_compras.png)
 
 ## Upcoming:
 - Daily Update;
