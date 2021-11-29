@@ -17,14 +17,14 @@ dag = DAG(
 
 def _extract():
     #conectando a base de dados de oltp.
-    database_connection = create_engine('mysql+mysqlconnector://root:sqlpass@172.17.0.2/stage_area')
+    database_connection_stage = create_engine('mysql+mysqlconnector://root:sqlpass@172.17.0.2/stage_area')
     
     #selecionando os dados.
     extract_table_list = ['category_name', 'customers', 'orders', 'order_items', 'order_reviews', 'products', 'sellers']
     for table in extract_table_list:
 
         print(table)
-        dataset_df = pd.read_sql('SELECT * FROM {}'.format(table), con= database_connection)
+        dataset_df = pd.read_sql('SELECT * FROM {}'.format(table), con= database_connection_stage)
 
         dataset_df.to_csv(
             path_temp_csv.format(table),
@@ -79,7 +79,7 @@ def _create_dimension_order_status():
 
     del f_order_items['order_status']
 
-    f_order_items.to_csv(path_temp_csv.format('f_order_item'), index=False)
+    f_order_items.to_csv(path_temp_csv.format('f_order_items'), index=False)
 
 def _create_dimension_products():
     f_order_items = pd.read_csv(path_temp_csv.format('f_order_items'))
@@ -97,7 +97,7 @@ def _create_dimension_products():
     conn.execute('DROP TABLE IF EXISTS {}.{}'.format('DW', 'd_products'))
     products.to_sql('d_products', con= database_connection, index=False)
 
-    f_order_items.to_csv(path_temp_csv.format('f_order_item'), index=False)
+    f_order_items.to_csv(path_temp_csv.format('f_order_items'), index=False)
 
 def _create_dimension_sellers():
     f_order_items = pd.read_csv(path_temp_csv.format('f_order_items'))
@@ -115,7 +115,7 @@ def _create_dimension_sellers():
     conn.execute('DROP TABLE IF EXISTS {}.{}'.format('DW', 'd_sellers'))
     sellers.to_sql('d_sellers', con= database_connection, index=False)
 
-    f_order_items.to_csv(path_temp_csv.format('f_order_item'), index=False)
+    f_order_items.to_csv(path_temp_csv.format('f_order_items'), index=False)
 
 def _create_dimension_customers():
     f_order_items = pd.read_csv(path_temp_csv.format('f_order_items'))
@@ -133,14 +133,13 @@ def _create_dimension_customers():
     conn.execute('DROP TABLE IF EXISTS {}.{}'.format('DW', 'd_customers'))
     customers.to_sql('d_customers', con= database_connection, index=False)
 
-    f_order_items.to_csv(path_temp_csv.format('f_order_item'), index=False)
+    f_order_items.to_csv(path_temp_csv.format('f_order_items'), index=False)
 
 def _load_fact():
-    #conectando a base de dados de oltp.
 
-    df = pd.read_csv(path_temp_csv.format('f_order_item'))
-    conn.execute('DROP TABLE IF EXISTS {}.{}'.format('DW', 'f_order_item'))
-    df.to_sql('f_order_item', con= database_connection, index=False)
+    df = pd.read_csv(path_temp_csv.format('f_order_items'))
+    conn.execute('DROP TABLE IF EXISTS {}.{}'.format('DW', 'f_order_items'))
+    df.to_sql('f_order_items', con= database_connection, index=False)
 
 extract_task = PythonOperator(
     task_id="extract_stage_tables", 

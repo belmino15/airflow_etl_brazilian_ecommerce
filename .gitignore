@@ -11,3 +11,4 @@ files/stage/olist_order_payments_dataset.csv
 others/
 airflow/dags/__pycache__/
 jupyters/.ipynb_checkpoints/
+airflow/logs/
