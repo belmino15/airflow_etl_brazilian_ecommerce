@@ -1,89 +1,89 @@
-# Airflow Pipeline for Data Analysis
+# Pipeline do Airflow para análise de dados
 
-## Summary:
-- Requirements;
-- Repository;
-- Introduction;
-- Instructions;
-- Results;
-- Upcoming;
-- Dataset.
+## Resumo:
+- Requisitos;
+- Repositório;
+- Introdução;
+- Instruções;
+- Resultados;
+- Por vir;
+- Conjunto de dados.
 
 
-## Requirements:
+## Requisitos:
 - Python;
 - Docker;
-- Any SQL Client;
+- Qualquer cliente SQL;
 
 ## Repository:
-- airflow - Location of airflow dags and logs.
-- code - Location of any standalone code;
-- files - Location where the datasets need to be;
-- jupyters - Location of used notebooks
+- airflow - Localização de registros e dags de fluxo de ar.
+- code - Localização de qualquer código autônomo;
+- files - Localização onde os conjuntos de dados precisam estar;
+- jupyters - Localização de notebooks usados.
 
 ## Introduction:
 
 ![kaggle_db](https://i.ytimg.com/vi/Uz26FqGE9tE/maxresdefault.jpg)
 
 
-The increase in the volume of data stored by companies has given rise to new jobs in companies. Professionals such as Data Analyst, Data Engineer and Data Scientist, have been increasingly required to work the data that the company has in its possession and bring value to the company.
+O aumento do volume de dados armazenados pelas empresas tem dado origem a novos empregos nas empresas. Profissionais como Analista de Dados, Engenheiro de Dados e Cientista de Dados têm sido cada vez mais solicitados a trabalhar os dados que a empresa possui e agregar valor à empresa.
 
-In this project, we will look at the work normally performed by a Data Engineer in order to facilitate data access by Data Analysts.
+Neste projeto, veremos o trabalho normalmente realizado por um Engenheiro de Dados para facilitar o acesso aos dados por Analistas de Dados.
 
-This project aims to present tools and practices that allow the Data Engineer to automatically make data available to the Data Analyst.
+Este projeto tem como objetivo apresentar ferramentas e práticas que permitem ao Engenheiro de Dados disponibilizar automaticamente os dados para o Analista de Dados.
 
-The intention is to allow the Data Analyst less effort and greater speed in creating views and generating insights with reliable data that reflect the current state of the business.
+A intenção é permitir ao Analista de Dados menos esforço e maior velocidade na criação de visualizações e na geração de insights com dados confiáveis ​​que reflitam o estado atual do negócio.
 
-## Instructions:
+## Instruções:
 
-Start Mysql Docker Container:
+Inicie o Mysql Docker Container:
     
     docker run -d --name mysql_server -p "3306:3306" -e MYSQL_ROOT_PASSWORD=sqlpass mysql
 
-Start Airflow Service:
+Inicie o serviço Airflow:
 
     docker run -d -p 8080:8080 -v "$PWD/files:/files" -v "$PWD/airflow/dags:/opt/airflow/dags/" -v "$PWD/airflow/logs:/opt/airflow/logs/" --entrypoint=/bin/bash --name airflow_service apache/airflow:2.1.1-python3.8 -c '(airflow db init && airflow users create --username admin --password airflowpass --firstname first --lastname last --role Admin --email admin@example.org); airflow webserver & airflow scheduler'
 
-Create Database:
+Criar banco de dados:
 
     python code/create_databases.py
 
-In the SQL Client you will see the created databases:
+No Client SQL você verá os bancos de dados criados:
 
 ![empty_db](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/empty_db.png)
 
-In the Airflow Webserver you see:
+No Airflow Webserver, você vê:
 
 ![airflow_1](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_1.png)
 
-Enable and trig *"file_stage_etl"* and wait to be done.
+Habilite e inicie * "file_stage_etl" * e espere concluir.
 
 ![airflow_2](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_2.png)
 
-Then, enable and trig *"stage_dw_etl"* and wait to be done.
+Então, habilite e inicie * "stage_dw_etl" * e espere concluir.
 
 ![airflow_3](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_3.png)
 
-The database will then be like this:
+O banco de dados será assim:
 
 ![complete_db](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/complete_db.png)
 
-## Results:
+## Resultados:
 
-The [link](https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv) shows that the original data has the structure shown below.
+O [link] (https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv) mostra que os dados originais possuem a estrutura mostrada a seguir.
 
 ![kaggle_db](https://i.imgur.com/HRhd2Y0.png)
 
-After the reformulation, the data will be organized as follows.
+Após a reformulação, os dados ficarão organizados da seguinte forma.
 
 ![dw_compras](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/dw_compras.png)
 
-## Upcoming:
-- Daily Update;
-- New views:
-    - Payment methods;
-    - Public reviews;
-    - Shipment tracking.
+## Por vir:
+- Atualização diária;
+- Novas visualizações:
+    - Métodos de Pagamento;
+    - Avaliações públicas;
+    - Rastreamento de embarque.
 
-## Dataset:
+## Conjunto de dados:
 Kaggle: Avaiable in this [link](https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv).
