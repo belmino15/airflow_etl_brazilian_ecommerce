@@ -21,7 +21,7 @@
 - files - Localização onde os conjuntos de dados precisam estar;
 - jupyters - Localização de notebooks usados.
 
-## Introduction:
+## Introdução:
 
 ![kaggle_db](https://i.ytimg.com/vi/Uz26FqGE9tE/maxresdefault.jpg)
 
@@ -86,4 +86,4 @@ Após a reformulação, os dados ficarão organizados da seguinte forma.
     - Rastreamento de embarque.
 
 ## Conjunto de dados:
-Kaggle: Avaiable in this [link](https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv).
+Kaggle: Disponível no [link](https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_sellers_dataset.csv).
