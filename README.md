@@ -15,7 +15,7 @@
 - Docker;
 - Qualquer cliente SQL;
 
-## Repository:
+## Repositórios:
 - airflow - Localização de registros e dags de fluxo de ar.
 - code - Localização de qualquer código autônomo;
 - files - Localização onde os conjuntos de dados precisam estar;
