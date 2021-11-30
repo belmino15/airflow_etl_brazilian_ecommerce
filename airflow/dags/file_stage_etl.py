@@ -10,8 +10,8 @@ conn = database_connection.connect()
 dag = DAG(
     dag_id="file_stage_etl",
     description="Carregando arquivos de dados para a stage",
-    start_date=dt.datetime(2021, 7, 19),
-    schedule_interval=None)
+    start_date=dt.datetime(2021, 11, 29),
+    schedule_interval= '@daily')
 
 def _etl_customers():
     # extract
