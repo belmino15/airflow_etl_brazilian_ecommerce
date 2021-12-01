@@ -56,11 +56,13 @@ No Airflow Webserver, você vê:
 
 ![airflow_1](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_1.png)
 
-Habilite e inicie * "file_stage_etl" * e espere concluir.
+Habilite as duas DAGs: * "file_stage_etl" * e * "stage_dw_etl" *.
+
+As DAGs estão programadas para executar diariamente. No entanto, para realizar a operação a qualquer momento  inicie * "file_stage_etl" * e espere concluir.
 
 ![airflow_2](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_2.png)
 
-Então, habilite e inicie * "stage_dw_etl" * e espere concluir.
+A DAG * "file_stage_etl" * então acionará automaticamente * "stage_dw_etl" *. Aguarde concluir.
 
 ![airflow_3](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/airflow_3.png)
 
@@ -79,7 +81,8 @@ Após a reformulação, os dados ficarão organizados da seguinte forma.
 ![dw_compras](https://github.com/belmino15/airflow_etl_brazilian_ecommerce/blob/master/images/dw_compras.png)
 
 ## Por vir:
-- Atualização diária;
+- ~~Atualização diária~~;
+- ~~Acionamento automatica da segunda DAG~~;
 - Novas visualizações:
     - Métodos de Pagamento;
     - Avaliações públicas;

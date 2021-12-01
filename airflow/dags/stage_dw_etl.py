@@ -13,7 +13,7 @@ dag = DAG(
     dag_id="stage_dw_etl",
     description="Carregando dados da Stage para a DW",
     start_date=dt.datetime(2021, 11, 29),
-    schedule_interval= '@daily')
+    schedule_interval= None)
 
 def _extract():
     #conectando a base de dados de oltp.

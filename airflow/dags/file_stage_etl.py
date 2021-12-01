@@ -3,6 +3,7 @@ import pandas as pd
 import datetime as dt
 from sqlalchemy import create_engine
 from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 
 database_connection = create_engine('mysql+mysqlconnector://root:sqlpass@172.17.0.2/stage_area')
 conn = database_connection.connect()
@@ -184,3 +185,10 @@ etl_category_name = PythonOperator(
     python_callable=_etl_category_name,
     dag=dag)
 
+trigger_stage_dw_etl = TriggerDagRunOperator(
+        task_id="trigger_stage_dw_etl",
+        trigger_dag_id="stage_dw_etl"
+    )
+
+[etl_customers, etl_geolocation, etl_orders, etl_order_items, etl_order_payments,
+ etl_order_reviews, etl_products, etl_sellers, etl_category_name] >> trigger_stage_dw_etl
